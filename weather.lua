@@ -20,6 +20,7 @@ Music1TargetVolume=0;
 Music2Volume=0;
 Music2TargetVolume=0;
 --ActionTrackID=random(1, 6);
+--ExploreTrackID=random(1, 2);
 ActionTrackID=random(1, 10);
 ExploreTrackID=random(1, 4);
 function PlayRandomSound(series, from, to, name, max)
@@ -61,7 +62,7 @@ function MusicUpdate()
 		MusicRush=20;
 	end
 
-	if (felony>0) or (stolen_car==1) or (MusicRush>0) and (Music1TargetVolume==0) or (MusicTimeOut<0) then
+	if ((felony>0) or (stolen_car==1) or (MusicRush>0)) and ((Music1TargetVolume==0) or (MusicTimeOut<0)) then
 		local length=10;
 		if (Music2Volume<=0) and (MENU_MUSIC>-100) then
 			print("Action!");
@@ -78,6 +79,7 @@ function MusicUpdate()
 				1.51,
 				3.26,
 				2.03};
+			--if (ActionTrackID>6) then
 			if (ActionTrackID>10) then
 				ActionTrackID=1;
 			end
@@ -106,6 +108,7 @@ function MusicUpdate()
 			alCmd("Close music");
 			local trackID=ExploreTrackID;
 			ExploreTrackID=(ExploreTrackID + 1);
+			--if (ExploreTrackID>2) then
 			if (ExploreTrackID>4) then
 				ExploreTrackID=1;
 			end
