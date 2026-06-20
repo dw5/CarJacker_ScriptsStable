@@ -858,10 +858,7 @@ function menu_display()
 			menu_showingmode=1;
 		end
 
-		if (LastKeyDown~=13) then
-		end
-
-		if (LastKeyDown==menu_controls[(5 * menu_controls_stride)]) and not ((not menu_updateFnc)) then
+		if (LastKeyDown==13) or ((LastKeyDown==menu_controls[(5 * menu_controls_stride)]) and not ((not menu_updateFnc))) then
 			local res=menu_updateFnc(menu_activeItem, MENU_CANACTIVATE);
 			if (res==1) or not (res) then
 				PlaySound2D("menue", 1);

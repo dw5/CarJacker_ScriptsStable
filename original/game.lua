@@ -127,7 +127,7 @@ function scumbag_Update(this)
 		local x, y, z=GetPosition(this);
 		local car=GetVehicle(this);
 		if (car>0) then
-			z, y, x=z, GetPosition(car);
+			x, y, z=GetPosition(car);
 		end
 
 		SetPosition(arrow, x, ((y + 400) + (70 * sin((GetTime() * 200)))), z);
@@ -194,10 +194,7 @@ function scumbag_Update(this)
 
 		if (mode==4) then
 			Cmd(car, "stop");
-			if (timeout<=1) then
-				if (GetSpeed(car)<1) then
-				end
-
+			if (timeout>1) or (GetSpeed(car)<1) then
 				Cmd(car, "StopEngine");
 				Cmd(car, "Lights 0");
 				timeout=0;
@@ -381,7 +378,7 @@ function driver_Update(this)
 		local x, y, z=GetPosition(this);
 		local car=GetVehicle(this);
 		if (car>0) then
-			z, y, x=z, GetPosition(car);
+			x, y, z=GetPosition(car);
 		end
 
 		local supercar=FindObject("supercar");
@@ -497,10 +494,10 @@ function driver_Update(this)
 						SetVector(this, "target2", ox, oy, oz);
 						local roadnetwork=FindObjectByClsID(CLS_ROADNETWORK);
 						local tx, ty, tz=GetPointOnNetwork(roadnetwork, ox, oy, oz);
-						tz, ty, tx=tz, IntersectLine(roadnetwork, tx, (ty + 10000), tz, tx, (ty - 10000), tz);
+						tx, ty, tz=IntersectLine(roadnetwork, tx, (ty + 10000), tz, tx, (ty - 10000), tz);
 						SetVector(this, "target", tx, ty, tz);
 						local dx, dy, dz=SubVectors(ox, oy, oz, tx, ty, tz);
-						dz, dy, dx=dz, Normalize(dx, dy, dz);
+						dx, dy, dz=Normalize(dx, dy, dz);
 						SetVector(this, "target1", (ox - (dx * 400)), oy, (oz - (dz * 400)));
 						if (firsttime==1) then
 							local cmd=format("move %d %d %d 0 1", tx, ty, tz);
@@ -515,7 +512,7 @@ function driver_Update(this)
 					local tx, ty, tz=GetVector(this, "target");
 					local dist2=(((x - tx) * (x - tx)) + ((z - tz) * (z - tz)));
 					if (dist2<(3000 * 3000)) then
-						tz, ty, tx=tz, GetVector(this, "target1");
+						tx, ty, tz=GetVector(this, "target1");
 						local cmd=format("target %d %d %d", tx, ty, tz);
 						SetVector(this, "target", tx, ty, tz);
 						Cmd(this, cmd);
@@ -541,10 +538,7 @@ function driver_Update(this)
 
 			if (mode==4) then
 				Cmd(car, "stop");
-				if (timeout<=5) then
-					if (GetSpeed(car)<1) then
-					end
-
+				if (timeout>5) or (GetSpeed(car)<1) then
 					Cmd(car, "StopEngine");
 					Cmd(car, "maxspd 1");
 					Cmd(car, "Lights 0");
@@ -594,14 +588,11 @@ function driver_Update(this)
 					Cmd(this, "anim idle");
 				end
 
-				if (timeout<=50) and (timeout>10) then
-					if (dist2>(200 * 200)) then
-						mode=0;
-						SetNumber(this, "nowarn", 0);
-						timeout=0;
-						Cmd(this, "autoappear 1");
-					end
-
+				if (timeout>50) or ((timeout>10) and (dist2>(200 * 200))) then
+					mode=0;
+					SetNumber(this, "nowarn", 0);
+					timeout=0;
+					Cmd(this, "autoappear 1");
 				end
 
 			end
@@ -695,7 +686,7 @@ function boss_Update(this)
 		local dist=VectorLength((px - x), (py - y), (pz - z));
 		local truck=FindObject("bosstruck");
 		if (truck~=0) then
-			z, y, x=z, GetPosition(truck);
+			x, y, z=GetPosition(truck);
 			local truckLoadedWheels=GetNumber(truck, "LoadedWheels");
 			local dist2truck=VectorLength((px - x), (py - y), (pz - z));
 			if (dist<500) and (dist2truck<5000) and (truckLoadedWheels>=20) then
@@ -795,7 +786,8 @@ function rgirl_StopRace()
 end
 
 function Animate(str, frames)
-	format("marker\\checkpoint%d", floor(mod((GetTime() * 16), frames)));
+	return format("marker\\checkpoint%d", floor(mod((GetTime() * 16), frames)));
+
 end
 
 function rgirl_Update(this)
@@ -820,6 +812,7 @@ function rgirl_Update(this)
 
 	if (racemode==1) then
 		local counter=GetNumber(this, "counter");
+		local prevcounter=counter;
 		counter=(counter + (DT / 2));
 		if (counter<0) then
 			local angle=(((-counter / 3) * 100) + 130);
@@ -894,8 +887,8 @@ function rgirl_Update(this)
 				less50=(less50 + DT);
 				if (less50>2) then
 					local roadnetwork=FindObjectByClsID(CLS_ROADNETWORK);
-					z, y, x=z, GetPointOnNetwork(roadnetwork, x, y, z);
-					z, y, x=z, IntersectLine(roadnetwork, x, (y + 100000), z, x, (y - 100000), z);
+					x, y, z=GetPointOnNetwork(roadnetwork, x, y, z);
+					x, y, z=IntersectLine(roadnetwork, x, (y + 100000), z, x, (y - 100000), z);
 					local fx, fy, fz=TransDir(car, 0, 0, 1);
 					local angle=-Vector2Angle(fx, fy, fz);
 					y=(y + 100);
@@ -991,7 +984,7 @@ end
 
 ES_ID=0;
 function EngineSmoke_Init(x, y, z, w, h, angle, dx, dy, dz, this)
-	z, y, x=z, GetVector(this, "Pos");
+	x, y, z=GetVector(this, "Pos");
 	return x, y, z, w, h, angle, dx, dy, dz;
 
 end
@@ -1514,10 +1507,7 @@ function girl_Update(this)
 
 			end
 
-			if (car~=0) then
-				if (GetNumber(car, "health")<=20) then
-				end
-
+			if (car==0) or (GetNumber(car, "health")<=20) then
 				Cmd(this, "OutOfCar");
 				EnableClipDistance(this, 0);
 			end
@@ -1653,10 +1643,7 @@ function chinamafiose_Update(this)
 
 			end
 
-			if (car~=0) then
-				if (GetNumber(car, "health")<=20) then
-				end
-
+			if (car==0) or (GetNumber(car, "health")<=20) then
 				Cmd(this, "OutOfCar");
 				EnableClipDistance(this, 0);
 			end
@@ -1803,7 +1790,7 @@ function lamppost4_Render(this)
 
 	end
 
-	z1, y1, x1=TransPt(this, TL2[1], (TL2[2] + (activeLight * 40)), TL2[3]);
+	x1, y1, z1=TransPt(this, TL2[1], (TL2[2] + (activeLight * 40)), TL2[3]);
 	if (cameraside==1) then
 		if (GetVisible(this)==1) then
 			AddFlare(x1, y1, z1, 1000, "sprite\\flare", 0, 0, r, g, 0);
@@ -1812,10 +1799,7 @@ function lamppost4_Render(this)
 
 	end
 
-	if (CurrentGreenLight~=id) then
-		if (mod((CurrentGreenLight + 2), 4)==id) then
-		end
-
+	if (CurrentGreenLight==id) or (mod((CurrentGreenLight + 2), 4)==id) then
 		AddLight(((x + x1) / 2), ((y + y1) / 2), ((z + z1) / 2), 1500, (r / 2), (g / 2), 0);
 	end
 

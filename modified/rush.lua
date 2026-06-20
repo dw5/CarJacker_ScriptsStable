@@ -36,20 +36,20 @@ function BulletShot(this, dispersion, damage, autoaimangle)
 	if (obj~=0) then
 		local cx, cy, cz=GetPosition(obj);
 		cy=(cy + 100);
-		pz1, py1, px1=pz1, SubVectors(cx, cy, cz, px, py, pz);
-		pz1, py1, px1=pz1, Normalize(px1, py1, pz1);
+		px1, py1, pz1=SubVectors(cx, cy, cz, px, py, pz);
+		px1, py1, pz1=Normalize(px1, py1, pz1);
 		print("aimed! ", GetName(obj));
 	end
 
 	local disp_x=(random() - 0.5);
 	local disp_y=(random() - 0.5);
 	local disp_z=(random() - 0.5);
-	disp_z, disp_y, disp_x=disp_z, Normalize(disp_x, disp_y, disp_z);
-	disp_z, disp_y, disp_x=disp_z, MulVector(disp_x, disp_y, disp_z, dispersion);
-	pz1, py1, px1=pz1, AddVectors(px1, py1, pz1, disp_x, disp_y, disp_z);
-	pz1, py1, px1=pz1, Normalize(px1, py1, pz1);
-	pz1, py1, px1=pz1, MulVector(px1, py1, pz1, 5000);
-	pz1, py1, px1=pz1, AddVectors(px, py, pz, px1, py1, pz1);
+	disp_x, disp_y, disp_z=Normalize(disp_x, disp_y, disp_z);
+	disp_x, disp_y, disp_z=MulVector(disp_x, disp_y, disp_z, dispersion);
+	px1, py1, pz1=AddVectors(px1, py1, pz1, disp_x, disp_y, disp_z);
+	px1, py1, pz1=Normalize(px1, py1, pz1);
+	px1, py1, pz1=MulVector(px1, py1, pz1, 5000);
+	px1, py1, pz1=AddVectors(px, py, pz, px1, py1, pz1);
 	local deadguy, cx, cy, cz=IntersectLineClsID(GetParent(this), CLS_CHARACTER, px, py, pz, px1, py1, pz1);
 	if (deadguy~=0) then
 		print("hit! ", GetName(deadguy));
@@ -92,13 +92,7 @@ function BulletShot(this, dispersion, damage, autoaimangle)
 		car_Damage(deadcar, cx, cy, cz, 20, 0, 100, 0, 5, 1);
 		local gunowner=GetParent(this);
 		local driver=GetDriver(deadcar);
-		if (driver>0) then
-			if (GetNumber(driver, "badguy")==1) then
-			end
-
-			if (GetNumber(gunowner, "copnear")==1) then
-			end
-
+		if (driver<=0) or (GetNumber(driver, "badguy")~=1) or (GetNumber(gunowner, "copnear")==1) then
 			local felony=GetNumber(gunowner, "felony");
 			felony=(felony + 10);
 			if (GetName(GetDriver(deadcar))=="models\\cop") then
@@ -118,10 +112,10 @@ function BulletShot(this, dispersion, damage, autoaimangle)
 		local splatter=FindObjectByClsID(CLS_SPLATTERSYSTEM);
 		if (dy>0.99) then
 			dx=(dx + 0.1);
-			dz, dy, dx=dz, Normalize(dx, dy, dz);
+			dx, dy, dz=Normalize(dx, dy, dz);
 		end
 
-		dz, dy, dx=dz, MulVector(dx, dy, dz, 100);
+		dx, dy, dz=MulVector(dx, dy, dz, 100);
 		AddSplash(splatter, "sprite\\bullethole", 20, 20, (hx - (dx / 2)), (hy - (dy / 2)), (hz - (dz / 2)), dx, dy, dz);
 		id=InsertParticleSource("ParticleSystems\\surfacehit.psf", hx, hy, hz, 0, 0, 0, 2, 2, 2);
 		SetTraceParams(id, 1, "sprite\\trace", 4, 2);
@@ -138,12 +132,12 @@ function HitTool(this, damage)
 	local dx, dy, dz=TransDir(this, 0, 0, -50);
 	dy=0;
 	local px1, py1, pz1=AddVectors(px, py, pz, dx, dy, dz);
-	pz, py, px=pz, AddVectors(px, py, pz, -dx, -dy, -dz);
+	px, py, pz=AddVectors(px, py, pz, -dx, -dy, -dz);
 	local deadguy, cx, cy, cz, triID=IntersectLineClsID(GetParent(this), CLS_CHARACTER, px, py, pz, px1, py1, pz1);
 	if (deadguy~=0) then
 		print("hit! ", GetString(deadguy, "name"));
 		local splatter=FindObjectByClsID(CLS_SPLATTERSYSTEM);
-		dz, dy, dx=dz, TransDir(this, 0, 0, -600);
+		dx, dy, dz=TransDir(this, 0, 0, -600);
 		if (GetNumber(deadguy, "health")>0) then
 			local cmd=format("Damage %d %d %d %d", damage, px, py, pz);
 			Cmd(deadguy, cmd);
@@ -175,10 +169,10 @@ function HitTool(this, damage)
 		local splatter=FindObjectByClsID(CLS_SPLATTERSYSTEM);
 		if (dy>0.99) then
 			dx=(dx + 0.1);
-			dz, dy, dx=dz, Normalize(dx, dy, dz);
+			dx, dy, dz=Normalize(dx, dy, dz);
 		end
 
-		dz, dy, dx=dz, MulVector(dx, dy, dz, 100);
+		dx, dy, dz=MulVector(dx, dy, dz, 100);
 		id=InsertParticleSource("ParticleSystems\\surfacehit.psf", hx, hy, hz, 0, 0, 0, 2, 2, 2);
 		if (random(0, 3)==0) then
 			PlaySound3D(hx, hy, hz, "Ricco\\BRicco0", 6, "channel1");
@@ -191,10 +185,10 @@ end
 function HitHandLeg(this, name, damage, offx, offy, offz)
 	local px, py, pz=GetBoneCenter(this, name);
 	local px1, py1, pz1=AddVectors(px, py, pz, offx, offy, offz);
-	pz, py, px=pz, AddVectors(px, py, pz, -offx, -offy, -offz);
+	px, py, pz=AddVectors(px, py, pz, -offx, -offy, -offz);
 	py1=py;
 	local dx, dy, dz=SubVectors(px1, py1, pz1, px, py, pz);
-	dz, dy, dx=dz, Normalize(dx, dy, dz);
+	dx, dy, dz=Normalize(dx, dy, dz);
 	local deadguy, cx, cy, cz=IntersectLineClsID(this, CLS_CHARACTER, px, (py - 50), pz, px1, (py1 - 50), pz1);
 	if (deadguy~=0) then
 		print("hit! ", GetString(deadguy, "name"));
@@ -248,6 +242,30 @@ function HitHandLeg(this, name, damage, offx, offy, offz)
 
 end
 
+-- GTA-style lock-on indicator: each frame the gun is out, draw a reticle on the
+-- auto-aim target (the same target BulletShot hits). Player only.
+function ShowAimLock(weapon)
+	local parent=GetParent(weapon);
+	if not (parent) then
+		do return end;
+
+	end
+
+	if (SameObjects(PLAYER, parent)~=1) then
+		do return end;
+
+	end
+
+	local px1, py1, pz1=TransDir(weapon, 0, 0, -1);
+	py1=0;
+	local obj=GetAutoAimTarget(parent, px1, py1, pz1, GetNumber(weapon, "autoaimangle"));
+	if (obj~=0) then
+		local tx, ty, tz=GetPosition(obj);
+		AddMarker(Animate("marker\\checkpoint", 3), tx, (ty + 100), tz, 48, 48, -24, -24);
+	end
+
+end
+
 function uzi_Update(this, name, damage, sx, sy, sz)
 	if (GetRenderable(this)==0) then
 		do return end;
@@ -260,6 +278,7 @@ function uzi_Update(this, name, damage, sx, sy, sz)
 
 	end
 
+	ShowAimLock(this);
 	local prev_frame=GetPrevFrame(parent);
 	local frame=GetFrame(parent);
 	local anim=GetAnimation(parent);
@@ -321,6 +340,7 @@ function pistol_Update(this)
 
 	end
 
+	ShowAimLock(this);
 	local prev_frame=GetNumber(this, "prev_frame");
 	local frame=GetFrame(parent);
 	SetNumber(this, "prev_frame", frame);

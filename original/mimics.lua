@@ -7,7 +7,7 @@ function head_InitialUpdate(this)
 	AddRecalcHierarchy(this, "UpperLip", "Bip01 Head");
 	AddRecalcHierarchy(this, "LeftEyeBrow", "Bip01 Head");
 	AddRecalcHierarchy(this, "RightEyeBrow", "Bip01 Head");
-	z2, y2, x2, z1, y1, x1=GetBox(this);
+	x1, y1, z1, x2, y2, z2=GetBox(this);
 	SetNumber(this, "height", 30);
 	SetNumber(this, "lip_speed", 8);
 end
@@ -150,15 +150,17 @@ end
 function head_Update(this)
 	local validate=1;
 	local ax=nil;
+	local ay=nil;
+	local az=nil;
+	local c_ax=nil;
+	local c_ay=nil;
+	local c_az=nil;
 	local height=GetNumber(this, "height");
 	ax=GetNumber(this, "eye_ax");
 	ay=GetNumber(this, "eye_ay");
 	c_ax=GetNumber(this, "eye_cax");
 	c_ay=GetNumber(this, "eye_cay");
-	if (abs((ax - c_ax))<=0.01) then
-		if (abs((ay - c_ay))>0.01) then
-		end
-
+	if (abs((ax - c_ax))>0.01) or (abs((ay - c_ay))>0.01) then
 		c_ax=(c_ax + ((ax - c_ax) / 4));
 		c_ay=(c_ay + ((ay - c_ay) / 4));
 		AddBoneTrans(this, "LeftEyeMuscle", 0, 0, 0, 0, c_ax, c_ay);
@@ -173,13 +175,7 @@ function head_Update(this)
 	c_ax=GetNumber(this, "neck_cax");
 	c_ay=GetNumber(this, "neck_cay");
 	c_az=GetNumber(this, "neck_caz");
-	if (abs((ax - c_ax))<=0.01) then
-		if (abs((ay - c_ay))<=0.01) then
-			if (abs((az - c_az))>0.01) then
-			end
-
-		end
-
+	if (abs((ax - c_ax))>0.01) or (abs((ay - c_ay))>0.01) or (abs((az - c_az))>0.01) then
 		c_ax=(c_ax + ((ax - c_ax) / 32));
 		c_ay=(c_ay + ((ay - c_ay) / 32));
 		c_az=(c_az + ((az - c_az) / 32));
@@ -210,6 +206,7 @@ function head_Update(this)
 	csmile=(csmile + ((smile - csmile) / 32));
 	SetNumber(this, "csmile", csmile);
 	local dz=nil;
+	local dx=nil;
 	if (csmile>0) then
 		dz=((-height * csmile) / 80);
 	else

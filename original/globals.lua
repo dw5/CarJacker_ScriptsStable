@@ -169,10 +169,12 @@ end
 function GetAutoAimTarget(parent, vx, vy, vz, maxDot)
 	local cam_x, cam_y, cam_z=GetPosition(parent);
 	cam_y=(cam_y + 100);
-	vz, vy, vx=vz, Normalize(vx, vy, vz);
+	vx, vy, vz=Normalize(vx, vy, vz);
 	local bestobj=0;
 	local bestdot=0;
 	local bestox=nil;
+	local bestoy=nil;
+	local bestoz=nil;
 	for i=0, (NumObjects() - 1) do
 		local obj=ObjectAtIdx(i);
 		local clsID=ClassID(obj);
@@ -180,10 +182,10 @@ function GetAutoAimTarget(parent, vx, vy, vz, maxDot)
 			if (SameObjects(parent, obj)==0) then
 				local ox, oy, oz=GetPosition(obj);
 				oy=(oy + random(0, 150));
-				oz, oy, ox=oz, SubVectors(ox, oy, oz, cam_x, cam_y, cam_z);
+				ox, oy, oz=SubVectors(ox, oy, oz, cam_x, cam_y, cam_z);
 				oy=(oy / 10);
 				local dist=VectorLength(ox, oy, oz);
-				oz, oy, ox=oz, DivVector(ox, oy, oz, dist);
+				ox, oy, oz=DivVector(ox, oy, oz, dist);
 				local dot=DotProduct(ox, oy, oz, vx, vy, vz);
 				if (dot>maxDot) and (dist>200) and (dist<4000) then
 					dot=(dot / dist);

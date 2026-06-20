@@ -10,6 +10,7 @@ function enter_security_code(code)
 
 	end
 
+	local dispcode=code;
 	for i=strlen(code), 4 do
 		dispcode=dispcode .. "*";
 	end
@@ -339,6 +340,7 @@ function message(line1, line2, line3, line4, time, mintime)
 	msg_line4=line4;
 	if not (time) then
 		msg_alpha=10;
+	else
 		msg_alpha=time;
 	end
 
@@ -363,6 +365,7 @@ function message2(scale, line1, line2, line3, line4, time, mintime)
 	msg_line4=line4;
 	if not (time) then
 		msg_alpha=4;
+	else
 		msg_alpha=time;
 	end
 
