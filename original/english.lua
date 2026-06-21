@@ -186,7 +186,7 @@ function MissionInfo(misid, gamemode)
 	end
 
 	if (misid==2) then
-		StartIntro("Sounds\\rap1.wav", "intro\\bar", "intro\\slippy", "intro\\mob2", "After saving the life of your boss, he decides itÂ’s time to have a little chat.  He tells you he is one of the biggest crime bosses in town and offers you to join him. You accept. Your first job is to install radio trackers on 5 police cars around town.  You have to put markers on the police cars while policemen are still in them.  Put the markers on the back of the cars, near the boot.  You will now be able to track the police on your radar.", 50, 50, 50);
+		StartIntro("Sounds\\rap1.wav", "intro\\bar", "intro\\slippy", "intro\\mob2", "After saving the life of your boss, he decides it’s time to have a little chat.  He tells you he is one of the biggest crime bosses in town and offers you to join him. You accept. Your first job is to install radio trackers on 5 police cars around town.  You have to put markers on the police cars while policemen are still in them.  Put the markers on the back of the cars, near the boot.  You will now be able to track the police on your radar.", 50, 50, 50);
 	end
 
 	if (misid==0) then
@@ -203,7 +203,7 @@ function MissionInfo(misid, gamemode)
 	end
 
 	if (misid==7) then
-		StartIntro("Sounds\\rap1.wav", "intro\\race", "intro\\slippy", nil, "As you are cruising in the stolen luxury car, you spot a beautiful Chinese woman in a cool looking car Â– she seems to want to race you. Take on the challenge, and make sure you win.", 0, 0, 0);
+		StartIntro("Sounds\\rap1.wav", "intro\\race", "intro\\slippy", nil, "As you are cruising in the stolen luxury car, you spot a beautiful Chinese woman in a cool looking car – she seems to want to race you. Take on the challenge, and make sure you win.", 0, 0, 0);
 	end
 
 	if (misid==6) then
@@ -211,11 +211,11 @@ function MissionInfo(misid, gamemode)
 	end
 
 	if (misid==5) then
-		StartIntro("Sounds\\rap2.wav", "intro\\dead_girl", "intro\\slippy", nil, "Disaster has struck! The Asian girl you raced was the daughter of your boss, and she was killed while you were supposed to be protecting her. You are in big trouble!  After a few days investigating, you discover who killed her - the boss of a rival gang.  To clear your name, you must now hunt him down to avenge the daughterÂ’s death.", 20, 20, 20);
+		StartIntro("Sounds\\rap2.wav", "intro\\dead_girl", "intro\\slippy", nil, "Disaster has struck! The Asian girl you raced was the daughter of your boss, and she was killed while you were supposed to be protecting her. You are in big trouble!  After a few days investigating, you discover who killed her - the boss of a rival gang.  To clear your name, you must now hunt him down to avenge the daughter’s death.", 20, 20, 20);
 	end
 
 	if (misid==10) then
-		StartIntro("Sounds\\rap1.wav", "intro\\slum", "intro\\slippy2", "intro\\braker", "ItÂ’s the final stand-off. You have to beat the entire rival gang before they beat you. Rumours suggest there are about 30 of them. If you live through this day you will be richly rewarded by your boss.", 20, 20, 20);
+		StartIntro("Sounds\\rap1.wav", "intro\\slum", "intro\\slippy2", "intro\\braker", "It’s the final stand-off. You have to beat the entire rival gang before they beat you. Rumours suggest there are about 30 of them. If you live through this day you will be richly rewarded by your boss.", 20, 20, 20);
 	end
 
 	if (misid==11) then

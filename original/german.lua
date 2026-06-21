@@ -13,8 +13,8 @@ BLOOD=0;
 QUIT_YES=74;
 QUIT_NO=78;
 RAMTHATCAR="Ramm es!";
-CONTROL_FORWARD="VorwÃ¤rts";
-CONTROL_BACKWARD="RÃ¼ckwÃ¤rts";
+CONTROL_FORWARD="Vorwärts";
+CONTROL_BACKWARD="Rückwärts";
 CONTROL_TURNLEFT="Nach links";
 CONTROL_TURNRIGHT="Nach rechts";
 CONTROL_HANDBRAKE="Handbremse";
@@ -28,7 +28,7 @@ CONTROL_MAP="Kartenzoom";
 CONTROL_ILLUMINATION="Scheinwerfer";
 LOGOTEXTURE="GUI\\logo";
 LOGOTEXTURE1="GUI\\logo1";
-BACK="ZurÃ¼ck";
+BACK="Zurück";
 ABOUT="Mitwirkende";
 BONUSMISSION="Bonus";
 MISSION="Mission ";
@@ -46,34 +46,34 @@ YOURRATING="Dein Ergebnis: ";
 ONEMORECARLEFT="Es fehlt noch ein Auto! Schnell!";
 COOL="COOL!";
 COOLFIRSTCAR="Cool! Das ist das erste Auto";
-LEAVECAR="Gib das Auto zurÃ¼ck!";
+LEAVECAR="Gib das Auto zurück!";
 MISSIONFAILED="Mission fehlgeschlagen!";
 BUSTED="Du wurdest geschnappt!";
 KILLS=" %d von 30! ";
 DOUBLEKILL="Doppelte Beute!";
 STOLENCAR="Achtung! Die Polizei sucht dieses Auto!";
 HELP0="Halte 'E', um den Motor zu starten";
-HELP1="DrÃ¼cke 'EINGABE', um einzusteigen";
+HELP1="Drücke 'EINGABE', um einzusteigen";
 HELP2="Halte 'EINGABE', um Funkmarker anzubringen";
 HELP3="Halte 'EINGABE', um einen Reifen abzunehmen";
-HELP4="DrÃ¼cke 'EINGABE', um einen Reifen in den LKW zu legen";
-HELP5="DrÃ¼cke 'B', um zu bestechen";
+HELP4="Drücke 'EINGABE', um einen Reifen in den LKW zu legen";
+HELP5="Drücke 'B', um zu bestechen";
 HELP6="Halte 'E', um den Code zu scannen,";
 HELP6A="wenn der Fahrer den Alarm ein- oder ausstellt";
-HELP7="DrÃ¼cke 'EINGABE', auszusteigen";
-PRESSENTER="EINGABE drÃ¼cken";
+HELP7="Drücke 'EINGABE', auszusteigen";
+PRESSENTER="EINGABE drücken";
 SSTARTENGINE="Starte...";
 SDISALARM="Schalte Alarm aus...";
 DISALARMFAILED="Kann Alarm nicht ausschalten";
 DISALARMED="Alarm ist ausgeschaltet";
 SREMOVEWHEEL="Nehme ab...";
-SUSEPICKLOCK="Ã–ffne...";
+SUSEPICKLOCK="Öffne...";
 SPUTMARKER="Bringe Marker an...";
 COOLFIRSTCAR="Cool! Erstes Auto! ";
 GREATONEMORECAR="Cool! Noch ein Auto!";
 NOTENOUGHMONEY="Du hast nicht genug Geld!";
 OUTOFFUEL="Benzin ist alle!";
-QUIT2MMENU="ZurÃ¼ck zum HauptmenÃ¼? (J/N)";
+QUIT2MMENU="Zurück zum Hauptmenü? (J/N)";
 LOADING="Lade...";
 CLIP="Du hast Munition aufgenommen";
 HUNDRED="Du hast 100 $ aufgenommen";
@@ -87,25 +87,25 @@ NEWGAME="Neues Spiel";
 CONTINUEGAME="Weiter";
 OPTIONS="Optionen";
 QUIT="Ende";
-OUTOFLEVEL="ZurÃ¼ck in die Stadt!";
-PRESSBACKSPACE="DrÃ¼cke BACKSPACE, um das Auto umzudrehen";
+OUTOFLEVEL="Zurück in die Stadt!";
+PRESSBACKSPACE="Drücke BACKSPACE, um das Auto umzudrehen";
 PUTMARKER="MARKIERUNG SETZEN";
 BRIBE="BESTECHEN";
 HIDE="VERSTECKEN";
-OPENDOOR="TÃœR Ã–FFNEN";
-CLOSEDOOR="TÃœR SCHLIESSEN";
+OPENDOOR="TÜR ÖFFNEN";
+CLOSEDOOR="TÜR SCHLIESSEN";
 GETOUT="RAUS";
 TOGGLEILLUM="SCHEINWERFER";
 TOGGLESIREN="SIRENE";
 STARTENGINE="START";
-MUFFLEENGINE="DÃ„MPFEN";
+MUFFLEENGINE="DÄMPFEN";
 CANTSTART=" Kann Motor nicht starten";
 TAXI="TAXI!!";
 GETIN="REIN";
 REMOVEWHEEL="REIFEN ENTFERNEN";
 LOADWHEEL="REIFEN AUFLADEN";
-DOORLOCKED="TÃ¼r ist verschlossen";
-DOORUNLOCKED="TÃ¼r ist offen";
+DOORLOCKED="Tür ist verschlossen";
+DOORUNLOCKED="Tür ist offen";
 WHEELCOUNT="Geladene Reifen: %d";
 WHEELLOADED="Der Reifen ist aufgeladen.";
 E_COPYRIGHT1="\\I2005 (c) Alle Rechte vorbehalten\\i";
@@ -158,7 +158,7 @@ function MissionShortInfo(misid, gamemode)
 	end
 
 	if (misid==10) then
-		do return "ZerstÃ¶re feindliche Gang" end;
+		do return "Zerstöre feindliche Gang" end;
 
 	end
 
@@ -172,7 +172,7 @@ function MissionShortInfo(misid, gamemode)
 end
 
 function MissionStealthInfo(misid, gamemode)
-	StartIntro("Sounds\\rap" .. random(1, 2) .. ".wav", StealthArg(1), "intro\\slippy", nil, "Es gibt eine Sonderbestellung fÃ¼r dieses Luxusauto. Du musst dieses Auto finden und stehlen und es dann zum Versteck im Schrottplatz bringen. Wird nicht leicht, es zu finden, aber es wurde zuletzt im gelben Bereich auf deiner Karte gesehen. Du hast nur 20 Minuten Zeit. Mit 'M' wechselst du den Kartenzoom. Findest du es, dann benutz den Alarmscanner (Taste E). Damit Ã¶ffnest du das Auto schnell und leise. Pass auf die ganzen Bullen in der Stadt auf.", 10, 10, 10);
+	StartIntro("Sounds\\rap" .. random(1, 2) .. ".wav", StealthArg(1), "intro\\slippy", nil, "Es gibt eine Sonderbestellung für dieses Luxusauto. Du musst dieses Auto finden und stehlen und es dann zum Versteck im Schrottplatz bringen. Wird nicht leicht, es zu finden, aber es wurde zuletzt im gelben Bereich auf deiner Karte gesehen. Du hast nur 20 Minuten Zeit. Mit 'M' wechselst du den Kartenzoom. Findest du es, dann benutz den Alarmscanner (Taste E). Damit öffnest du das Auto schnell und leise. Pass auf die ganzen Bullen in der Stadt auf.", 10, 10, 10);
 end
 
 function MissionInfo(misid, gamemode)
@@ -182,15 +182,15 @@ function MissionInfo(misid, gamemode)
 	end
 
 	if (misid==9) then
-		StartIntro("Sounds\\rap2.wav", "intro\\chinatown", "intro\\slippy", "intro\\mob", "Als du eines Tages von der Arbeit zurÃ¼ck kommst, nÃ¤hert sich dir auf der StraÃŸe ein gut angezogener Chinese. Er bietet dir einen Job als sein Fahrer und Bodyguard an. Am nÃ¤chsten Tag sollst du ihn vom Friedhof abholen und auf die andere Seite der Stadt nach Chinatown bringen.", 50, 50, 50);
+		StartIntro("Sounds\\rap2.wav", "intro\\chinatown", "intro\\slippy", "intro\\mob", "Als du eines Tages von der Arbeit zurück kommst, nähert sich dir auf der Straße ein gut angezogener Chinese. Er bietet dir einen Job als sein Fahrer und Bodyguard an. Am nächsten Tag sollst du ihn vom Friedhof abholen und auf die andere Seite der Stadt nach Chinatown bringen.", 50, 50, 50);
 	end
 
 	if (misid==2) then
-		StartIntro("Sounds\\rap1.wav", "intro\\bar", "intro\\slippy", "intro\\mob2", "Nachdem du das Leben deines geheimnisvollen Chefs gerettet hast, entschlieÃŸt er sich zu einem kleinen Plausch. Er verrÃ¤t dir, dass er einer der grÃ¶ÃŸten Gangsterbosse der Stadt ist. Da du ihm das Leben gerettet hast, bietet er dir an, seiner Gang beizutreten. Dein erster Job ist, Funkmarker an 5 Polizeiautos in der Stadt anzubringen. Installiere die Markierungen hinten an den Polizeiautos am Kofferraum. Sei sehr vorsichtig dabei und lass dich nicht schnappen. Nachdem du die Markierungen angebracht hast, kannst du die Polizeiautos auf deinem Radar verfolgen.", 50, 50, 50);
+		StartIntro("Sounds\\rap1.wav", "intro\\bar", "intro\\slippy", "intro\\mob2", "Nachdem du das Leben deines geheimnisvollen Chefs gerettet hast, entschließt er sich zu einem kleinen Plausch. Er verrät dir, dass er einer der größten Gangsterbosse der Stadt ist. Da du ihm das Leben gerettet hast, bietet er dir an, seiner Gang beizutreten. Dein erster Job ist, Funkmarker an 5 Polizeiautos in der Stadt anzubringen. Installiere die Markierungen hinten an den Polizeiautos am Kofferraum. Sei sehr vorsichtig dabei und lass dich nicht schnappen. Nachdem du die Markierungen angebracht hast, kannst du die Polizeiautos auf deinem Radar verfolgen.", 50, 50, 50);
 	end
 
 	if (misid==0) then
-		StartIntro("Sounds\\rap2.wav", "intro\\bar", "intro\\slippy", "intro\\mob", "Du erkennst bald, dass deine Mafia-Freunde in groÃŸem Stil Autos verschieben. Sie wollen deine FÃ¤higkeiten in der hohen Kunst des Autodiebstahls testen. Deine erste Aufgabe ist einfach, du musst aber vorsichtig sein. Wenn dich die Polizei sieht, ist deine Mission gescheitert. Du hast 15 Minuten, um 16 Reifen von parkenden Autos zu klauen. Benutze den SchraubenschlÃ¼ssel (Taste 3), um die Reifen zu entfernen und lade die Reifen in den Kofferraum. Nach Abschluss des Jobs kehrst du zum AnhÃ¤nger zurÃ¼ck.", 50, 50, 50);
+		StartIntro("Sounds\\rap2.wav", "intro\\bar", "intro\\slippy", "intro\\mob", "Du erkennst bald, dass deine Mafia-Freunde in großem Stil Autos verschieben. Sie wollen deine Fähigkeiten in der hohen Kunst des Autodiebstahls testen. Deine erste Aufgabe ist einfach, du musst aber vorsichtig sein. Wenn dich die Polizei sieht, ist deine Mission gescheitert. Du hast 15 Minuten, um 16 Reifen von parkenden Autos zu klauen. Benutze den Schraubenschlüssel (Taste 3), um die Reifen zu entfernen und lade die Reifen in den Kofferraum. Nach Abschluss des Jobs kehrst du zum Anhänger zurück.", 50, 50, 50);
 	end
 
 	if (misid==1) then
@@ -207,19 +207,19 @@ function MissionInfo(misid, gamemode)
 	end
 
 	if (misid==6) then
-		StartIntro("Sounds\\rap1.wav", "intro\\van", "intro\\slippy", "intro\\mob", "Du musst diesen Laster sicher an sein Ziel bringen. Du hast nur 5 Minuten und ein ganz groÃŸes Problem: Die Bullen sind hinter dir her und du spÃ¼rst schon jetzt ihren heiÃŸen Atem in deinem Nacken!", 20, 20, 20);
+		StartIntro("Sounds\\rap1.wav", "intro\\van", "intro\\slippy", "intro\\mob", "Du musst diesen Laster sicher an sein Ziel bringen. Du hast nur 5 Minuten und ein ganz großes Problem: Die Bullen sind hinter dir her und du spürst schon jetzt ihren heißen Atem in deinem Nacken!", 20, 20, 20);
 	end
 
 	if (misid==5) then
-		StartIntro("Sounds\\rap2.wav", "intro\\dead_girl", "intro\\slippy", nil, "Was fÃ¼r eine absolute Katastrophe! Die Chinesin war die Tochter vom Boss. Sie wurde umgebracht als du auf sie aufpassen solltest. Du steckst jetzt ziemlich tief drin! Nach einigen Tagen der Suche findest du den LKW-Fahrer, der sie umgebracht hat. Er ist natÃ¼rlich der Boss einer rivalisierenden Gang. Um deinen Namen reinzuwaschen, musst du ihn jagen und tÃ¶ten.", 20, 20, 20);
+		StartIntro("Sounds\\rap2.wav", "intro\\dead_girl", "intro\\slippy", nil, "Was für eine absolute Katastrophe! Die Chinesin war die Tochter vom Boss. Sie wurde umgebracht als du auf sie aufpassen solltest. Du steckst jetzt ziemlich tief drin! Nach einigen Tagen der Suche findest du den LKW-Fahrer, der sie umgebracht hat. Er ist natürlich der Boss einer rivalisierenden Gang. Um deinen Namen reinzuwaschen, musst du ihn jagen und töten.", 20, 20, 20);
 	end
 
 	if (misid==10) then
-		StartIntro("Sounds\\rap1.wav", "intro\\slum", "intro\\slippy2", "intro\\braker", "Jetzt musst du die gesamte rivalisierende Gang zerstÃ¶ren. Jage sie in den StraÃŸen und zeig ihnen die Gerechtigkeit der StraÃŸe. Es sind 30 Leute, also hol sie dir! Ihre Strafe wird hart aber gerecht!", 20, 20, 20);
+		StartIntro("Sounds\\rap1.wav", "intro\\slum", "intro\\slippy2", "intro\\braker", "Jetzt musst du die gesamte rivalisierende Gang zerstören. Jage sie in den Straßen und zeig ihnen die Gerechtigkeit der Straße. Es sind 30 Leute, also hol sie dir! Ihre Strafe wird hart aber gerecht!", 20, 20, 20);
 	end
 
 	if (misid==11) then
-		StartIntro("Sounds\\rap2.wav", "intro\\bar", "intro\\slippy1", "intro\\mob3", "GlÃ¼ckwunsch! Du hast erfolgreich die gegnerische Gang zerstÃ¶rt. Die gesamte Stadt gehÃ¶rt dir! Big Boss hat dir als Belohnung die SchlÃ¼ssel zu allen gestohlenen Autos gegeben. Jetzt kannst du sie in der ganzen Stadt genieÃŸen. GenieÃŸe das Leben, das du dir als bester Autodieb der Welt verdient hast!", 20, 20, 20);
+		StartIntro("Sounds\\rap2.wav", "intro\\bar", "intro\\slippy1", "intro\\mob3", "Glückwunsch! Du hast erfolgreich die gegnerische Gang zerstört. Die gesamte Stadt gehört dir! Big Boss hat dir als Belohnung die Schlüssel zu allen gestohlenen Autos gegeben. Jetzt kannst du sie in der ganzen Stadt genießen. Genieße das Leben, das du dir als bester Autodieb der Welt verdient hast!", 20, 20, 20);
 	end
 
 end
